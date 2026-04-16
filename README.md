@@ -44,7 +44,7 @@ worker.py            # shim для совместимости с app.domain.work
 ## Запуск Через Docker
 
 ```bash
-docker compose up --build
+docker compose up -d --build
 ```
 
 Переменные окружения для контейнеров вынесены в env/*.env и подключаются
