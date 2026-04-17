@@ -24,7 +24,6 @@ env/                 # env-файлы docker по сервисам
 alembic/             # миграции
 main.py              # FastAPI-приложение
 app/domain/worker.py # Consumer + Outbox dispatcher
-worker.py            # shim для совместимости с app.domain.worker
 ```
 
 ## Основные Возможности
@@ -122,4 +121,21 @@ alembic upgrade head
 ```bash
 uvicorn main:app --reload
 python -m app.domain.worker
+```
+
+## Troubleshooting
+
+Если в Docker возникают проблемы при запуске `.sh`-файлов,
+скорее всего у скриптов Windows-окончания строк (CRLF).
+
+Преобразуйте их в Unix-формат (LF):
+
+```bash
+dos2unix docker/start-api.sh docker/start-worker.sh
+```
+
+Или сразу для всех shell-скриптов в папке `docker`:
+
+```bash
+dos2unix docker/*.sh
 ```
